@@ -307,7 +307,7 @@ class Credential {
 
     var json = await http.post(client.issuer.tokenEndpoint,
         body: {
-          'grant_type': 'refresh_token',
+          'response_type': 'refresh_token',
           'refresh_token': _token.refreshToken,
           'client_id': client.clientId,
           if (client.clientSecret != null) 'client_secret': client.clientSecret
@@ -537,7 +537,7 @@ class Flow {
     } else if (methods!.contains('client_secret_post')) {
       json = await http.post(client.issuer.tokenEndpoint,
           body: {
-            'grant_type': 'authorization_code',
+            'response_type': 'code',
             'code': code,
             'redirect_uri': redirectUri.toString(),
             'client_id': client.clientId,
@@ -550,7 +550,7 @@ class Flow {
       json = await http.post(client.issuer.tokenEndpoint,
           headers: {'authorization': 'Basic $h'},
           body: {
-            'grant_type': 'authorization_code',
+            'response_type': 'code',
             'code': code,
             'redirect_uri': redirectUri.toString()
           },
