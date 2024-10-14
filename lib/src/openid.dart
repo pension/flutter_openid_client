@@ -326,7 +326,7 @@ class Credential {
   /// and the token is updated by other means.
   void updateToken(Map<String, dynamic> json) {
     _token =
-        TokenResponse.fromJson({'refresh_token': _token.refreshToken, ...json});
+        TokenResponse.fromJson({'refresh_token': _token.refreshToken, (json.containsKey('data') ? ...json['data'] : ...json)});
     _onTokenChanged.add(_token);
   }
 
