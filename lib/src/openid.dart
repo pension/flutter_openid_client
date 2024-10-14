@@ -558,7 +558,8 @@ class Flow {
     } else {
       throw UnsupportedError('Unknown auth methods: $methods');
     }
-    return TokenResponse.fromJson(json);
+    Map<String, dynamic> payload = Map<String, dynamic>.from(json);
+    return TokenResponse.fromJson(payload['data'] != null ? payload['data'] : json);
   }
 
   /// Login with username and password
