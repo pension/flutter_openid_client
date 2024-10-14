@@ -73,8 +73,7 @@ class Authenticator {
             ? Flow.authorizationCodeWithPKCE(client,
                 prompt: prompt, additionalParameters: additionalParameters, scopes: scopes.toList(), codeVerifier: codeVerifier)
             : Flow.authorizationCode(client,
-                prompt: prompt, additionalParameters: additionalParameters)
-          ..scopes.addAll(scopes)
+                prompt: prompt, additionalParameters: additionalParameters, scopes: scopes.toList())
           ..redirectUri = redirectUri ?? Uri.parse('http://localhost:$port/');
 
   /// Starts the authentication flow.
